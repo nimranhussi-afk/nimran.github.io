@@ -5,91 +5,468 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Syed Nimran Hussain | AI Engineer</title>
     <style>
+        :root {
+            --bg: #0a0a0a;
+            --surface: #111111;
+            --border: #1e1e1e;
+            --accent: #00ff88;
+            --accent-dim: #00cc66;
+            --text: #c8c8c8;
+            --text-bright: #f0f0f0;
+            --text-muted: #555;
+            --tag-bg: #0d1f15;
+            --tag-border: #00ff8833;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
         body {
-            background-color: #0a0a0a;
-            color: #e5e5e5;
+            background: var(--bg);
+            color: var(--text);
             font-family: 'Courier New', Courier, monospace;
-            margin: 0;
-            padding: 40px 20px;
-            display: flex;
-            justify-content: center;
+            line-height: 1.7;
+            padding: 2rem 1rem;
         }
+
         .container {
-            max-width: 700px;
-            width: 100%;
+            max-width: 760px;
+            margin: 0 auto;
         }
-        h1 { color: #fff; font-size: 2rem; margin-bottom: 5px; }
-        .subtitle { color: #00ff66; font-size: 0.9rem; margin-bottom: 30px; letter-spacing: 1px; }
-        h2 { color: #fff; font-size: 1.2rem; border-bottom: 1px solid #222; padding-bottom: 5px; margin-top: 40px; }
-        p { line-height: 1.6; color: #a3a3a3; font-size: 0.95rem; }
-        .project-card {
-            background: #111;
-            border: 1px solid #222;
-            padding: 20px;
-            border-radius: 4px;
-            margin-top: 20px;
+
+        /* Header */
+        .header {
+            border-left: 3px solid var(--accent);
+            padding-left: 1.5rem;
+            margin-bottom: 3rem;
         }
-        .project-title { color: #fff; font-weight: bold; margin-bottom: 10px; }
-        .links a {
-            color: #00ff66;
-            text-decoration: none;
-            margin-right: 20px;
+
+        .header h1 {
+            font-size: 1.6rem;
+            color: var(--text-bright);
+            letter-spacing: 0.05em;
+        }
+
+        .focus-line {
+            color: var(--accent);
+            font-size: 0.78rem;
+            margin-top: 0.4rem;
+            letter-spacing: 0.12em;
+        }
+
+        .status {
+            display: inline-block;
+            margin-top: 0.8rem;
+            font-size: 0.72rem;
+            color: var(--accent);
+            border: 1px solid var(--tag-border);
+            background: var(--tag-bg);
+            padding: 0.2rem 0.7rem;
+            border-radius: 2px;
+        }
+
+        .status::before {
+            content: '● ';
+            animation: blink 1.4s infinite;
+        }
+
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
+
+        /* Sections */
+        .section {
+            margin-bottom: 3rem;
+        }
+
+        .section-label {
+            font-size: 0.72rem;
+            color: var(--text-muted);
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            margin-bottom: 1.2rem;
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+        }
+
+        .section-label::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: var(--border);
+        }
+
+        /* About */
+        .about-text {
             font-size: 0.9rem;
+            color: var(--text);
+            line-height: 1.85;
         }
-        .links a:hover { text-decoration: underline; }
-        ul { padding-left: 20px; color: #a3a3a3; font-size: 0.95rem; line-height: 1.6; }
-        li strong { color: #fff; }
+
+        .about-text span {
+            color: var(--accent);
+        }
+
+        /* Projects */
+        .project {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-left: 3px solid var(--accent);
+            padding: 1.3rem 1.5rem;
+            margin-bottom: 1.2rem;
+            transition: border-color 0.2s;
+        }
+
+        .project:hover {
+            border-color: var(--accent);
+            border-left-color: var(--accent);
+        }
+
+        .project-title {
+            color: var(--text-bright);
+            font-size: 0.95rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+        }
+
+        .project-badge {
+            font-size: 0.62rem;
+            color: var(--accent);
+            border: 1px solid var(--tag-border);
+            background: var(--tag-bg);
+            padding: 0.1rem 0.5rem;
+            border-radius: 2px;
+            letter-spacing: 0.1em;
+        }
+
+        .project-desc {
+            font-size: 0.84rem;
+            color: var(--text);
+            margin-bottom: 0.9rem;
+            line-height: 1.75;
+        }
+
+        .project-links {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .project-links a {
+            font-size: 0.75rem;
+            color: var(--accent-dim);
+            text-decoration: none;
+            letter-spacing: 0.08em;
+            border-bottom: 1px solid transparent;
+            transition: border-color 0.2s, color 0.2s;
+        }
+
+        .project-links a:hover {
+            color: var(--accent);
+            border-bottom-color: var(--accent);
+        }
+
+        .project-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.4rem;
+            margin-bottom: 0.8rem;
+        }
+
+        .tag {
+            font-size: 0.65rem;
+            color: var(--accent);
+            background: var(--tag-bg);
+            border: 1px solid var(--tag-border);
+            padding: 0.15rem 0.5rem;
+            border-radius: 2px;
+            letter-spacing: 0.08em;
+        }
+
+        /* Stack grid */
+        .stack-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0.8rem;
+        }
+
+        .stack-item {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            padding: 0.8rem 1rem;
+            font-size: 0.78rem;
+        }
+
+        .stack-item .stack-category {
+            color: var(--accent);
+            font-size: 0.65rem;
+            letter-spacing: 0.15em;
+            margin-bottom: 0.35rem;
+        }
+
+        .stack-item .stack-tools {
+            color: var(--text);
+        }
+
+        /* Credentials */
+        .credential {
+            display: flex;
+            gap: 1rem;
+            padding: 0.6rem 0;
+            border-bottom: 1px solid var(--border);
+            font-size: 0.83rem;
+        }
+
+        .credential:last-child {
+            border-bottom: none;
+        }
+
+        .credential-label {
+            color: var(--accent);
+            min-width: 140px;
+            font-size: 0.72rem;
+            letter-spacing: 0.08em;
+        }
+
+        /* Connect */
+        .connect-links {
+            display: flex;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .connect-links a {
+            color: var(--text-bright);
+            text-decoration: none;
+            font-size: 0.83rem;
+            border: 1px solid var(--border);
+            padding: 0.4rem 1rem;
+            transition: border-color 0.2s, color 0.2s;
+        }
+
+        .connect-links a:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+        }
+
+        /* Footer */
+        .footer {
+            margin-top: 4rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid var(--border);
+            font-size: 0.7rem;
+            color: var(--text-muted);
+            text-align: center;
+        }
+
+        @media (max-width: 560px) {
+            .stack-grid { grid-template-columns: 1fr; }
+            .credential { flex-direction: column; gap: 0.2rem; }
+            .credential-label { min-width: unset; }
+        }
     </style>
 </head>
 <body>
-    <div class="container">
+<div class="container">
+
+    <!-- Header -->
+    <header class="header">
         <h1>Syed Nimran Hussain</h1>
-        <div class="subtitle">MAIN_CORE_FOCUS: // AI_ENGINEERING_&_BACKEND_INFRASTRUCTURE</div>
-        
-        <h2>// ABOUT_ME</h2>
-        <p>I am an AI Engineer focused on mastering the foundational algorithms, mathematical frameworks, and deployment architectures that power modern artificial intelligence. I don't just connect API nodes; I build, optimize, and program systems from the ground up using Python, covering supervised learning and artificial neural networks (ANNs).</p>
-        
-        <h2>// FEATURED_PRODUCTION_PIPELINES</h2>
-        
-        <!-- Project 1: CrewAI Content Factory -->
-        <div class="project-card">
-            <div class="project-title">🚀 CrewAI Multi-Agent Asynchronous Content Factory</div>
-            <p>An asynchronous multi-agent Python pipeline built to replace simple single-prompt bottlenecks with an aligned execution matrix. Coordinates specialized virtual worker personas (Content Planner, Writer, and Editor) backed by Gemini 2.5, using strict token containment criteria and runtime asyncio event loops to bypass concurrent execution blocks seamlessly.</p>
-            <div class="links">
-                <a href="https://github.com/nimranhussi-afk/CrewAI-Blog-Factory" target="_blank">💡 View Source Code</a>
+        <div class="focus-line">MAIN_CORE_FOCUS: // AGENTIC_AI_SYSTEMS_&_AUTOMATION_ENGINEERING</div>
+        <span class="status">Available for work</span>
+    </header>
+
+    <!-- About -->
+    <section class="section">
+        <div class="section-label">// ABOUT_ME</div>
+        <p class="about-text">
+            I build <span>AI agents and automation systems</span> that solve real business problems —
+            from deployed conversational agents and multi-agent content pipelines to no-code workflow
+            automations. My current focus is <span>agentic AI</span>: systems that make decisions,
+            call tools, and complete multi-step tasks autonomously using LangGraph, CrewAI, and OpenAI.
+            I don't just connect API nodes — I build, deploy, and ship working systems.
+        </p>
+    </section>
+
+    <!-- Projects -->
+    <section class="section">
+        <div class="section-label">// FEATURED_PRODUCTION_PIPELINES</div>
+
+        <!-- Digital Twin -->
+        <div class="project">
+            <div class="project-title">
+                🤖 AI Digital Twin — Deployed Conversational Agent
+                <span class="project-badge">LIVE</span>
+            </div>
+            <div class="project-stack">
+                <span class="tag">Python</span>
+                <span class="tag">OpenAI</span>
+                <span class="tag">Gradio</span>
+                <span class="tag">Railway</span>
+                <span class="tag">Tool Calling</span>
+            </div>
+            <p class="project-desc">
+                A deployed AI agent representing a person's career portfolio on the web.
+                Built with an agentic tool-calling loop — handles live visitor conversations,
+                records contact details via tool calls, and logs unanswered questions for
+                follow-up. Deployed live on Railway with a real public URL.
+            </p>
+            <div class="project-links">
+                <a href="https://github.com/nimranhussi-afk/my-digital-twin-agent">[ Source Code ]</a>
+                <a href="#">[ Live Demo ]</a>
             </div>
         </div>
 
-        <!-- Project 2: MLOps Scripting Engine -->
-        <div class="project-card">
-            <div class="project-title">⚡ Autonomous AI Scripting Engine & Backend MLOps Pipeline</div>
-            <p>A state-managed backend automation pipeline engineered to handle complex batch operations autonomously. Built using Python, n8n, and JavaScript to process records iteratively without system memory failures, using dynamic token-routing to completely bypass external API constraints.</p>
-            <div class="links">
-                <a href="https://github.com/nimranhussi-afk/ai-script-automation" target="_blank">💡 View Source Code</a>
+        <!-- CrewAI Blog Factory -->
+        <div class="project">
+            <div class="project-title">
+                🚀 CrewAI Multi-Agent Asynchronous Content Factory
+            </div>
+            <div class="project-stack">
+                <span class="tag">Python</span>
+                <span class="tag">CrewAI</span>
+                <span class="tag">Gemini 2.5</span>
+                <span class="tag">asyncio</span>
+                <span class="tag">Multi-Agent</span>
+            </div>
+            <p class="project-desc">
+                An asynchronous multi-agent pipeline built to replace simple single-prompt
+                bottlenecks with an aligned execution matrix. Coordinates specialized virtual
+                worker personas (Content Planner, Writer, and Editor) backed by Gemini 2.5,
+                using strict token containment criteria and runtime asyncio event loops to
+                bypass concurrent execution blocks seamlessly.
+            </p>
+            <div class="project-links">
+                <a href="https://github.com/nimranhussi-afk/CrewAI-Blog-Factory">[ Source Code ]</a>
             </div>
         </div>
 
-        <!-- Project 3: Client Inventory Management System -->
-        <div class="project-card">
-            <div class="project-title">📦 Inventory Management Architecture // La CAPANNA dei Sapori</div>
-            <p>A custom commercial backend tracking system developed for a private client to streamline retail stock logistics, audit workflows, and systemic stock histories. Implemented in Python to guarantee data safety, optimize data lookup latency, and deploy programmatic triggers to flag critical low-inventory milestones instantly.</p>
-            <div class="links">
-                <a href="https://github.com/nimranhussi-afk/La-CAPANNA-dei-Sapori" target="_blank">💼 View Source Code</a>
+        <!-- n8n Script Automation -->
+        <div class="project">
+            <div class="project-title">
+                ⚡ AI Script Automation — n8n Workflow Pipeline
+            </div>
+            <div class="project-stack">
+                <span class="tag">n8n</span>
+                <span class="tag">Groq</span>
+                <span class="tag">Google Sheets API</span>
+                <span class="tag">Unsplash API</span>
+                <span class="tag">JavaScript</span>
+            </div>
+            <p class="project-desc">
+                A full no-code automation pipeline that reads topics from Google Sheets,
+                generates AI scripts using Groq, fetches matching images via the Unsplash API,
+                and writes all results back to Sheets — entirely automated, zero manual steps.
+                Demonstrates multi-step workflow orchestration with real API integrations.
+            </p>
+            <div class="project-links">
+                <a href="https://github.com/nimranhussi-afk/ai-script-automation">[ Source Code ]</a>
             </div>
         </div>
 
-        <h2>// CORE_CREDENTIALS_&_TRACKS</h2>
-        <ul>
-            <li><strong>ICMA Pakistan:</strong> Cleared Operations Level 2 Professional Papers.</li>
-            <li><strong>Technical Certifications:</strong> Core AI Specializations from Google, IBM, and Harvard CS50 tracks.</li>
-            <li><strong>Language Proficiency:</strong> Academic IELTS English Proficiency Certified.</li>
-        </ul>
-
-        <h2>// CONNECT</h2>
-        <div class="links" style="margin-top: 20px;">
-            <a href="https://github.com/nimranhussi-afk" target="_blank">[ GitHub ]</a>
-            <a href="https://www.linkedin.com/in/syed-nimran-hussain-215a13235/" target="_blank">[ LinkedIn ]</a>
+        <!-- LangGraph -->
+        <div class="project">
+            <div class="project-title">
+                🔗 LangGraph Agentic Pipeline — Core Patterns
+            </div>
+            <div class="project-stack">
+                <span class="tag">Python</span>
+                <span class="tag">LangGraph</span>
+                <span class="tag">Ollama</span>
+                <span class="tag">Tool Calling</span>
+                <span class="tag">State Machines</span>
+            </div>
+            <p class="project-desc">
+                A series of progressively complex AI agents built from scratch using LangGraph —
+                covering stateful nodes, conditional branching, looping with counters, and real
+                tool-calling patterns without framework abstraction. Demonstrates core agentic
+                control flow mechanics from fundamentals upward.
+            </p>
+            <div class="project-links">
+                <a href="https://github.com/nimranhussi-afk">[ View on GitHub ]</a>
+            </div>
         </div>
+
+        <!-- Inventory -->
+        <div class="project">
+            <div class="project-title">
+                📦 Inventory Management System — La CAPANNA dei Sapori
+            </div>
+            <div class="project-stack">
+                <span class="tag">Python</span>
+                <span class="tag">Backend</span>
+                <span class="tag">Data Management</span>
+            </div>
+            <p class="project-desc">
+                A custom commercial backend tracking system developed for a private client
+                to streamline retail stock logistics, audit workflows, and systemic stock histories.
+                Implemented in Python to guarantee data safety, optimize lookup latency, and deploy
+                programmatic triggers to flag critical low-inventory milestones instantly.
+            </p>
+            <div class="project-links">
+                <a href="https://github.com/nimranhussi-afk/La-CAPANNA-dei-Sapori">[ Source Code ]</a>
+            </div>
+        </div>
+
+    </section>
+
+    <!-- Stack -->
+    <section class="section">
+        <div class="section-label">// CORE_STACK</div>
+        <div class="stack-grid">
+            <div class="stack-item">
+                <div class="stack-category">AI_AGENTS</div>
+                <div class="stack-tools">Python, LangGraph, CrewAI, OpenAI, Gemini, Ollama</div>
+            </div>
+            <div class="stack-item">
+                <div class="stack-category">WORKFLOW_AUTOMATION</div>
+                <div class="stack-tools">n8n, multi-step pipelines, API integrations</div>
+            </div>
+            <div class="stack-item">
+                <div class="stack-category">DEPLOYMENT</div>
+                <div class="stack-tools">Gradio, Railway, GitHub Pages</div>
+            </div>
+            <div class="stack-item">
+                <div class="stack-category">LOCAL_AI</div>
+                <div class="stack-tools">Ollama — private, no API costs</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Credentials -->
+    <section class="section">
+        <div class="section-label">// CORE_CREDENTIALS</div>
+        <div class="credential">
+            <span class="credential-label">ICMA_PAKISTAN</span>
+            <span>Cleared Operations Level 2 Professional Papers</span>
+        </div>
+        <div class="credential">
+            <span class="credential-label">CERTIFICATIONS</span>
+            <span>Core AI Specializations — Google, IBM, Harvard CS50</span>
+        </div>
+        <div class="credential">
+            <span class="credential-label">LANGUAGE</span>
+            <span>Academic IELTS English Proficiency Certified</span>
+        </div>
+    </section>
+
+    <!-- Connect -->
+    <section class="section">
+        <div class="section-label">// CONNECT</div>
+        <div class="connect-links">
+            <a href="https://github.com/nimranhussi-afk">[ GitHub ]</a>
+            <a href="https://www.linkedin.com/in/syed-nimran-hussain-215a13235/">[ LinkedIn ]</a>
+        </div>
+    </section>
+
+    <div class="footer">
+        © 2026 Syed Nimran Hussain — built with intention, not templates.
     </div>
+
+</div>
 </body>
 </html>
