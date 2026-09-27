@@ -1,497 +1,524 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="dark">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Syed Nimran Hussain | AI Engineer</title>
+    <title>Syed Nimran Hussain | AI Engineer & Automation Specialist</title>
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- FontAwesome & Google Fonts -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        cyber: {
+                            bg: '#070a0f',
+                            surface: '#0d131f',
+                            card: 'rgba(15, 23, 42, 0.75)',
+                            border: 'rgba(0, 243, 255, 0.18)',
+                            accent: '#00f3ff',
+                            'accent-glow': 'rgba(0, 243, 255, 0.35)',
+                            alt: '#00ff88',
+                            'alt-glow': 'rgba(0, 255, 136, 0.35)',
+                            muted: '#64748b',
+                            text: '#cbd5e1',
+                            bright: '#f8fafc'
+                        }
+                    },
+                    fontFamily: {
+                        mono: ['"Fira Code"', 'monospace'],
+                        sans: ['Inter', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+
     <style>
-        :root {
-            --bg: #0a0a0a;
-            --surface: #111111;
-            --border: #1e1e1e;
-            --accent: #00ff88;
-            --accent-dim: #00cc66;
-            --text: #c8c8c8;
-            --text-bright: #f0f0f0;
-            --text-muted: #555;
-            --tag-bg: #0d1f15;
-            --tag-border: #00ff8833;
-        }
-
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-
+        /* Custom Customizations & Aesthetic Styles */
         body {
-            background: var(--bg);
-            color: var(--text);
-            font-family: 'Courier New', Courier, monospace;
-            line-height: 1.7;
-            padding: 2rem 1rem;
+            background-color: #070a0f;
+            color: #cbd5e1;
+            font-family: 'Inter', sans-serif;
+            background-image: 
+                radial-gradient(circle at 15% 15%, rgba(0, 243, 255, 0.05) 0%, transparent 40%),
+                radial-gradient(circle at 85% 85%, rgba(0, 255, 136, 0.05) 0%, transparent 40%),
+                linear-gradient(to right, rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+            background-size: 100% 100%, 100% 100%, 32px 32px, 32px 32px;
+            background-attachment: fixed;
         }
 
-        .container {
-            max-width: 760px;
-            margin: 0 auto;
+        /* Glassmorphism Panel */
+        .glass-panel {
+            background: rgba(13, 19, 31, 0.7);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(0, 243, 255, 0.15);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
         }
 
-        /* Header */
-        .header {
-            border-left: 3px solid var(--accent);
-            padding-left: 1.5rem;
-            margin-bottom: 3rem;
+        .glass-panel:hover {
+            border-color: rgba(0, 243, 255, 0.4);
+            box-shadow: 0 8px 32px 0 rgba(0, 243, 255, 0.12);
         }
 
-        .header h1 {
-            font-size: 1.6rem;
-            color: var(--text-bright);
-            letter-spacing: 0.05em;
+        /* Glowing Effects */
+        .glow-accent {
+            text-shadow: 0 0 12px rgba(0, 243, 255, 0.6);
+        }
+        .glow-alt {
+            text-shadow: 0 0 12px rgba(0, 255, 136, 0.6);
         }
 
-        .focus-line {
-            color: var(--accent);
-            font-size: 0.78rem;
-            margin-top: 0.4rem;
-            letter-spacing: 0.12em;
+        .border-glow-hover {
+            transition: all 0.3s ease;
+        }
+        .border-glow-hover:hover {
+            border-color: #00f3ff;
+            box-shadow: 0 0 15px rgba(0, 243, 255, 0.25);
+            transform: translateY(-2px);
         }
 
-        .status {
-            display: inline-block;
-            margin-top: 0.8rem;
-            font-size: 0.72rem;
-            color: var(--accent);
-            border: 1px solid var(--tag-border);
-            background: var(--tag-bg);
-            padding: 0.2rem 0.7rem;
-            border-radius: 2px;
+        /* Pulse Dot Animation */
+        @keyframes pulse-glow {
+            0%, 100% { opacity: 1; transform: scale(1); box-shadow: 0 0 8px #00ff88; }
+            50% { opacity: 0.4; transform: scale(0.85); box-shadow: 0 0 2px #00ff88; }
+        }
+        .status-pulse {
+            animation: pulse-glow 2s infinite ease-in-out;
         }
 
-        .status::before {
-            content: '● ';
-            animation: blink 1.4s infinite;
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #070a0f;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #1e293b;
+            border-radius: 4px;
+            border: 1px solid rgba(0, 243, 255, 0.2);
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #00f3ff;
         }
 
-        @keyframes blink {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0; }
-        }
-
-        /* Sections */
-        .section {
-            margin-bottom: 3rem;
-        }
-
-        .section-label {
-            font-size: 0.72rem;
-            color: var(--text-muted);
-            letter-spacing: 0.2em;
-            text-transform: uppercase;
-            margin-bottom: 1.2rem;
-            display: flex;
-            align-items: center;
-            gap: 0.8rem;
-        }
-
-        .section-label::after {
-            content: '';
-            flex: 1;
-            height: 1px;
-            background: var(--border);
-        }
-
-        /* About */
-        .about-text {
-            font-size: 0.9rem;
-            color: var(--text);
-            line-height: 1.85;
-        }
-
-        .about-text span {
-            color: var(--accent);
-        }
-
-        /* Projects */
-        .project {
-            background: var(--surface);
-            border: 1px solid var(--border);
-            border-left: 3px solid var(--accent);
-            padding: 1.3rem 1.5rem;
-            margin-bottom: 1.2rem;
-            transition: border-color 0.2s;
-        }
-
-        .project:hover {
-            border-color: var(--accent);
-            border-left-color: var(--accent);
-        }
-
-        .project-title {
-            color: var(--text-bright);
-            font-size: 0.95rem;
+        /* Terminal Prompt Styling */
+        .term-prompt::before {
+            content: '>';
+            color: #00f3ff;
+            margin-right: 0.5rem;
             font-weight: bold;
-            margin-bottom: 0.5rem;
-            display: flex;
-            align-items: center;
-            gap: 0.6rem;
-        }
-
-        .project-badge {
-            font-size: 0.62rem;
-            color: var(--accent);
-            border: 1px solid var(--tag-border);
-            background: var(--tag-bg);
-            padding: 0.1rem 0.5rem;
-            border-radius: 2px;
-            letter-spacing: 0.1em;
-        }
-
-        .project-desc {
-            font-size: 0.84rem;
-            color: var(--text);
-            margin-bottom: 0.9rem;
-            line-height: 1.75;
-        }
-
-        .project-links {
-            display: flex;
-            gap: 1rem;
-            flex-wrap: wrap;
-        }
-
-        .project-links a {
-            font-size: 0.75rem;
-            color: var(--accent-dim);
-            text-decoration: none;
-            letter-spacing: 0.08em;
-            border-bottom: 1px solid transparent;
-            transition: border-color 0.2s, color 0.2s;
-        }
-
-        .project-links a:hover {
-            color: var(--accent);
-            border-bottom-color: var(--accent);
-        }
-
-        .project-stack {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.4rem;
-            margin-bottom: 0.8rem;
-        }
-
-        .tag {
-            font-size: 0.65rem;
-            color: var(--accent);
-            background: var(--tag-bg);
-            border: 1px solid var(--tag-border);
-            padding: 0.15rem 0.5rem;
-            border-radius: 2px;
-            letter-spacing: 0.08em;
-        }
-
-        /* Stack grid */
-        .stack-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 0.8rem;
-        }
-
-        .stack-item {
-            background: var(--surface);
-            border: 1px solid var(--border);
-            padding: 0.8rem 1rem;
-            font-size: 0.78rem;
-        }
-
-        .stack-item .stack-category {
-            color: var(--accent);
-            font-size: 0.65rem;
-            letter-spacing: 0.15em;
-            margin-bottom: 0.35rem;
-        }
-
-        .stack-item .stack-tools {
-            color: var(--text);
-        }
-
-        /* Credentials */
-        .credential {
-            display: flex;
-            gap: 1rem;
-            padding: 0.6rem 0;
-            border-bottom: 1px solid var(--border);
-            font-size: 0.83rem;
-        }
-
-        .credential:last-child {
-            border-bottom: none;
-        }
-
-        .credential-label {
-            color: var(--accent);
-            min-width: 140px;
-            font-size: 0.72rem;
-            letter-spacing: 0.08em;
-        }
-
-        /* Connect */
-        .connect-links {
-            display: flex;
-            gap: 1.5rem;
-            flex-wrap: wrap;
-        }
-
-        .connect-links a {
-            color: var(--text-bright);
-            text-decoration: none;
-            font-size: 0.83rem;
-            border: 1px solid var(--border);
-            padding: 0.4rem 1rem;
-            transition: border-color 0.2s, color 0.2s;
-        }
-
-        .connect-links a:hover {
-            border-color: var(--accent);
-            color: var(--accent);
-        }
-
-        /* Footer */
-        .footer {
-            margin-top: 4rem;
-            padding-top: 1.5rem;
-            border-top: 1px solid var(--border);
-            font-size: 0.7rem;
-            color: var(--text-muted);
-            text-align: center;
-        }
-
-        @media (max-width: 560px) {
-            .stack-grid { grid-template-columns: 1fr; }
-            .credential { flex-direction: column; gap: 0.2rem; }
-            .credential-label { min-width: unset; }
         }
     </style>
 </head>
-<body>
-<div class="container">
+<body class="min-h-screen py-8 px-4 sm:px-6 lg:px-8 selection:bg-cyber-accent selection:text-cyber-bg">
 
-    <!-- Header -->
-    <header class="header">
-        <h1>Syed Nimran Hussain</h1>
-        <div class="focus-line">MAIN_CORE_FOCUS: // AGENTIC_AI_SYSTEMS_&_AUTOMATION_ENGINEERING</div>
-        <span class="status">Available for work</span>
-    </header>
+    <div class="max-w-4xl mx-auto space-y-8">
 
-    <!-- About -->
-    <section class="section">
-        <div class="section-label">// ABOUT_ME</div>
-        <p class="about-text">
-            I build <span>AI agents and automation systems</span> that solve real business problems —
-            from deployed conversational agents and multi-agent content pipelines to no-code workflow
-            automations. My current focus is <span>agentic AI</span>: systems that make decisions,
-            call tools, and complete multi-step tasks autonomously using LangGraph, CrewAI, and OpenAI.
-            I don't just connect API nodes — I build, deploy, and ship working systems.
-        </p>
-    </section>
+        <!-- Header & Terminal Topbar -->
+        <header class="glass-panel rounded-xl p-6 sm:p-8 relative overflow-hidden transition-all duration-300">
+            <!-- Background Decorative Grid Lines -->
+            <div class="absolute top-0 right-0 w-64 h-64 bg-gradient-to-br from-cyber-accent/10 to-transparent rounded-full blur-3xl -z-10 pointer-events-none"></div>
 
-    <!-- Projects -->
-    <section class="section">
-        <div class="section-label">// FEATURED_PRODUCTION_PIPELINES</div>
+            <div class="flex flex-col md:flex-row md:items-center justify-between gap-6 border-b border-cyber-border/40 pb-6">
+                <div>
+                    <div class="flex items-center gap-3 mb-2">
+                        <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-mono bg-cyber-alt/10 text-cyber-alt border border-cyber-alt/30">
+                            <span class="w-2 h-2 rounded-full bg-cyber-alt status-pulse"></span>
+                            Available for work / Contracting
+                        </span>
+                    </div>
+                    <h1 class="text-2xl sm:text-3xl font-extrabold text-cyber-bright tracking-tight font-mono">
+                        Syed Nimran Hussain
+                    </h1>
+                    <p class="text-cyber-accent text-sm font-mono mt-1 glow-accent flex items-center gap-2">
+                        <i class="fa-solid font-mono text-xs text-cyber-muted">&gt;</i> AI Engineer & Automation Specialist
+                    </p>
+                </div>
 
-        <!-- CodeSage - NEW PROJECT -->
-        <div class="project">
-            <div class="project-title">
-                🔍 CodeSage — AI Code Review Agent
-                <span class="project-badge">NEW</span>
+                <!-- Connect Links Quick Action Header -->
+                <div class="flex items-center gap-3">
+                    <a href="https://github.com/nimranhussi-afk" target="_blank" rel="noopener noreferrer" 
+                       class="px-4 py-2 rounded-lg bg-cyber-surface border border-cyber-border text-cyber-bright hover:border-cyber-accent hover:text-cyber-accent transition-all duration-200 text-xs font-mono flex items-center gap-2">
+                        <i class="fa-brands fa-github text-sm"></i> GitHub
+                    </a>
+                    <a href="https://www.linkedin.com/in/syed-nimran-hussain-215a13235/" target="_blank" rel="noopener noreferrer" 
+                       class="px-4 py-2 rounded-lg bg-cyber-surface border border-cyber-border text-cyber-bright hover:border-cyber-accent hover:text-cyber-accent transition-all duration-200 text-xs font-mono flex items-center gap-2">
+                        <i class="fa-brands fa-linkedin text-sm"></i> LinkedIn
+                    </a>
+                </div>
             </div>
-            <div class="project-stack">
-                <span class="tag">Python</span>
-                <span class="tag">LangChain</span>
-                <span class="tag">OpenAI GPT-4</span>
-                <span class="tag">GitPython</span>
-                <span class="tag">Autonomous Agents</span>
+
+            <!-- Terminal Core Focus Banner -->
+            <div class="mt-6 font-mono text-xs sm:text-sm bg-cyber-bg/80 rounded-lg p-3 sm:p-4 border border-cyber-border/60 flex flex-wrap items-center justify-between gap-2">
+                <span class="text-cyber-muted">MAIN_CORE_FOCUS:</span>
+                <span class="text-cyber-alt font-semibold glow-alt tracking-wide">// AGENTIC_AI_SYSTEMS_&_AUTOMATION_ENGINEERING</span>
             </div>
-            <p class="project-desc">
-                An intelligent autonomous agent that clones any GitHub repository, analyzes code
-                structure and quality, identifies security vulnerabilities, and generates detailed
-                improvement reports with actionable feedback. Demonstrates real-world agentic AI
-                patterns — tool calling, state management, and multi-step reasoning without human
-                intervention. Built to solve the tedious manual code review bottleneck.
+        </header>
+
+        <!-- About Section -->
+        <section class="glass-panel rounded-xl p-6 sm:p-8 space-y-4">
+            <div class="flex items-center gap-3 text-xs font-mono text-cyber-muted uppercase tracking-widest border-b border-cyber-border/40 pb-3">
+                <i class="fa-solid fa-terminal text-cyber-accent"></i>
+                <span>// ABOUT_ME</span>
+            </div>
+            
+            <p class="text-sm sm:text-base text-cyber-text leading-relaxed">
+                I build <span class="text-cyber-accent font-semibold">AI agents and automation systems</span> that solve real business problems — from deployed conversational agents and multi-agent content pipelines to no-code workflow automations. 
             </p>
-            <div class="project-links">
-                <a href="https://github.com/nimranhussi-afk/codesage-ai">[ Source Code ]</a>
-            </div>
-        </div>
-
-        <!-- Digital Twin -->
-        <div class="project">
-            <div class="project-title">
-                🤖 AI Digital Twin — Deployed Conversational Agent
-                <span class="project-badge">LIVE</span>
-            </div>
-            <div class="project-stack">
-                <span class="tag">Python</span>
-                <span class="tag">OpenAI</span>
-                <span class="tag">Gradio</span>
-                <span class="tag">Railway</span>
-                <span class="tag">Tool Calling</span>
-            </div>
-            <p class="project-desc">
-                A deployed AI agent representing a person's career portfolio on the web.
-                Built with an agentic tool-calling loop — handles live visitor conversations,
-                records contact details via tool calls, and logs unanswered questions for
-                follow-up. Deployed live on Railway with a real public URL.
+            <p class="text-sm sm:text-base text-cyber-text leading-relaxed">
+                My primary focus is <span class="text-cyber-alt font-semibold">agentic AI</span>: systems that make decisions, invoke specialized tools, and complete complex multi-step tasks autonomously using <span class="text-cyber-bright font-mono text-xs px-1.5 py-0.5 rounded bg-slate-800 border border-slate-700">LangGraph</span>, <span class="text-cyber-bright font-mono text-xs px-1.5 py-0.5 rounded bg-slate-800 border border-slate-700">CrewAI</span>, and <span class="text-cyber-bright font-mono text-xs px-1.5 py-0.5 rounded bg-slate-800 border border-slate-700">OpenAI</span>. I don't just connect API endpoints — I architect, deploy, and ship working, reliable AI workflows.
             </p>
-            <div class="project-links">
-                <a href="https://github.com/nimranhussi-afk/my-digital-twin-agent">[ Source Code ]</a>
-                <a href="#">[ Live Demo ]</a>
-            </div>
-        </div>
+        </section>
 
-        <!-- CrewAI Blog Factory -->
-        <div class="project">
-            <div class="project-title">
-                🚀 CrewAI Multi-Agent Asynchronous Content Factory
-            </div>
-            <div class="project-stack">
-                <span class="tag">Python</span>
-                <span class="tag">CrewAI</span>
-                <span class="tag">Gemini 2.5</span>
-                <span class="tag">asyncio</span>
-                <span class="tag">Multi-Agent</span>
-            </div>
-            <p class="project-desc">
-                An asynchronous multi-agent pipeline built to replace simple single-prompt
-                bottlenecks with an aligned execution matrix. Coordinates specialized virtual
-                worker personas (Content Planner, Writer, and Editor) backed by Gemini 2.5,
-                using strict token containment criteria and runtime asyncio event loops to
-                bypass concurrent execution blocks seamlessly.
-            </p>
-            <div class="project-links">
-                <a href="https://github.com/nimranhussi-afk/CrewAI-Blog-Factory">[ Source Code ]</a>
-            </div>
-        </div>
+        <!-- Featured Projects Section -->
+        <section class="space-y-6">
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-cyber-border/40 pb-4">
+                <div class="flex items-center gap-3 text-xs font-mono text-cyber-muted uppercase tracking-widest">
+                    <i class="fa-solid fa-microchip text-cyber-alt"></i>
+                    <span>// FEATURED_PRODUCTION_PIPELINES</span>
+                </div>
 
-        <!-- n8n Script Automation -->
-        <div class="project">
-            <div class="project-title">
-                ⚡ AI Script Automation — n8n Workflow Pipeline
+                <!-- Filter Buttons -->
+                <div class="flex items-center gap-2 font-mono text-xs">
+                    <button onclick="filterProjects('all')" id="btn-all" class="px-3 py-1 rounded-md bg-cyber-accent/20 text-cyber-accent border border-cyber-accent/40 hover:bg-cyber-accent/30 transition-all">All</button>
+                    <button onclick="filterProjects('agent')" id="btn-agent" class="px-3 py-1 rounded-md bg-cyber-surface text-cyber-muted border border-cyber-border hover:text-cyber-bright transition-all">Agents</button>
+                    <button onclick="filterProjects('automation')" id="btn-automation" class="px-3 py-1 rounded-md bg-cyber-surface text-cyber-muted border border-cyber-border hover:text-cyber-bright transition-all">Automations</button>
+                </div>
             </div>
-            <div class="project-stack">
-                <span class="tag">n8n</span>
-                <span class="tag">Groq</span>
-                <span class="tag">Google Sheets API</span>
-                <span class="tag">Unsplash API</span>
-                <span class="tag">JavaScript</span>
-            </div>
-            <p class="project-desc">
-                A full no-code automation pipeline that reads topics from Google Sheets,
-                generates AI scripts using Groq, fetches matching images via the Unsplash API,
-                and writes all results back to Sheets — entirely automated, zero manual steps.
-                Demonstrates multi-step workflow orchestration with real API integrations.
-            </p>
-            <div class="project-links">
-                <a href="https://github.com/nimranhussi-afk/ai-script-automation">[ Source Code ]</a>
-            </div>
-        </div>
 
-        <!-- LangGraph -->
-        <div class="project">
-            <div class="project-title">
-                🔗 LangGraph Agentic Pipeline — Core Patterns
-            </div>
-            <div class="project-stack">
-                <span class="tag">Python</span>
-                <span class="tag">LangGraph</span>
-                <span class="tag">Ollama</span>
-                <span class="tag">Tool Calling</span>
-                <span class="tag">State Machines</span>
-            </div>
-            <p class="project-desc">
-                A series of progressively complex AI agents built from scratch using LangGraph —
-                covering stateful nodes, conditional branching, looping with counters, and real
-                tool-calling patterns without framework abstraction. Demonstrates core agentic
-                control flow mechanics from fundamentals upward.
-            </p>
-            <div class="project-links">
-                <a href="https://github.com/nimranhussi-afk">[ View on GitHub ]</a>
-            </div>
-        </div>
+            <div class="grid grid-cols-1 gap-6" id="projects-container">
 
-        <!-- Inventory -->
-        <div class="project">
-            <div class="project-title">
-                📦 Inventory Management System — La CAPANNA dei Sapori
-            </div>
-            <div class="project-stack">
-                <span class="tag">Python</span>
-                <span class="tag">Backend</span>
-                <span class="tag">Data Management</span>
-            </div>
-            <p class="project-desc">
-                A custom commercial backend tracking system developed for a private client
-                to streamline retail stock logistics, audit workflows, and systemic stock histories.
-                Implemented in Python to guarantee data safety, optimize lookup latency, and deploy
-                programmatic triggers to flag critical low-inventory milestones instantly.
-            </p>
-            <div class="project-links">
-                <a href="https://github.com/nimranhussi-afk/La-CAPANNA-dei-Sapori">[ Source Code ]</a>
-            </div>
-        </div>
+                <!-- Project 1: CodeSage -->
+                <div class="project-card glass-panel rounded-xl p-6 border-glow-hover space-y-4" data-category="agent">
+                    <div class="flex flex-wrap items-center justify-between gap-2">
+                        <h3 class="text-lg font-bold text-cyber-bright flex items-center gap-2 font-mono">
+                            <span>🔍 CodeSage — AI Code Review Agent</span>
+                        </h3>
+                        <span class="px-2 py-0.5 text-[10px] font-mono rounded bg-cyber-accent/10 text-cyber-accent border border-cyber-accent/30">NEW</span>
+                    </div>
 
-    </section>
+                    <div class="flex flex-wrap gap-1.5 font-mono text-xs">
+                        <span class="px-2 py-0.5 rounded bg-slate-900/80 text-cyber-accent border border-cyber-accent/20">Python</span>
+                        <span class="px-2 py-0.5 rounded bg-slate-900/80 text-cyber-accent border border-cyber-accent/20">LangChain</span>
+                        <span class="px-2 py-0.5 rounded bg-slate-900/80 text-cyber-accent border border-cyber-accent/20">OpenAI GPT-4</span>
+                        <span class="px-2 py-0.5 rounded bg-slate-900/80 text-cyber-accent border border-cyber-accent/20">GitPython</span>
+                        <span class="px-2 py-0.5 rounded bg-slate-900/80 text-cyber-alt border border-cyber-alt/20">Autonomous Agents</span>
+                    </div>
 
-    <!-- Stack -->
-    <section class="section">
-        <div class="section-label">// CORE_STACK</div>
-        <div class="stack-grid">
-            <div class="stack-item">
-                <div class="stack-category">AI_AGENTS</div>
-                <div class="stack-tools">Python, LangGraph, CrewAI, OpenAI, Gemini, Ollama</div>
-            </div>
-            <div class="stack-item">
-                <div class="stack-category">WORKFLOW_AUTOMATION</div>
-                <div class="stack-tools">n8n, multi-step pipelines, API integrations</div>
-            </div>
-            <div class="stack-item">
-                <div class="stack-category">DEPLOYMENT</div>
-                <div class="stack-tools">Gradio, Railway, GitHub Pages</div>
-            </div>
-            <div class="stack-item">
-                <div class="stack-category">LOCAL_AI</div>
-                <div class="stack-tools">Ollama — private, no API costs</div>
-            </div>
-        </div>
-    </section>
+                    <p class="text-sm text-cyber-text leading-relaxed">
+                        An intelligent autonomous agent that clones any GitHub repository, analyzes code structure and quality, identifies security vulnerabilities, and generates detailed improvement reports with actionable feedback. Demonstrates real-world agentic AI patterns — tool calling, state management, and multi-step reasoning without human intervention.
+                    </p>
 
-    <!-- Credentials -->
-    <section class="section">
-        <div class="section-label">// CORE_CREDENTIALS</div>
-        <div class="credential">
-            <span class="credential-label">ICMA_PAKISTAN</span>
-            <span>Cleared Operations Level 2 Professional Papers</span>
-        </div>
-        <div class="credential">
-            <span class="credential-label">CERTIFICATIONS</span>
-            <span>Core AI Specializations — Google, IBM, Harvard CS50</span>
-        </div>
-        <div class="credential">
-            <span class="credential-label">LANGUAGE</span>
-            <span>Academic IELTS English Proficiency Certified</span>
-        </div>
-    </section>
+                    <div class="pt-2">
+                        <a href="https://github.com/nimranhussi-afk/codesage-ai" target="_blank" rel="noopener noreferrer" 
+                           class="inline-flex items-center gap-2 text-xs font-mono text-cyber-accent hover:text-cyber-bright hover:underline transition-all">
+                            <i class="fa-brands fa-github"></i> [ Source Code ]
+                        </a>
+                    </div>
+                </div>
 
-    <!-- Connect -->
-    <section class="section">
-        <div class="section-label">// CONNECT</div>
-        <div class="connect-links">
-            <a href="https://github.com/nimranhussi-afk">[ GitHub ]</a>
-            <a href="https://www.linkedin.com/in/syed-nimran-hussain-215a13235/">[ LinkedIn ]</a>
-        </div>
-    </section>
+                <!-- Project 2: AI Digital Twin -->
+                <div class="project-card glass-panel rounded-xl p-6 border-glow-hover space-y-4" data-category="agent">
+                    <div class="flex flex-wrap items-center justify-between gap-2">
+                        <h3 class="text-lg font-bold text-cyber-bright flex items-center gap-2 font-mono">
+                            <span>🤖 AI Digital Twin — Deployed Conversational Agent</span>
+                        </h3>
+                        <span class="px-2 py-0.5 text-[10px] font-mono rounded bg-cyber-alt/10 text-cyber-alt border border-cyber-alt/30">LIVE AGENT</span>
+                    </div>
 
-    <div class="footer">
-        © 2026 Syed Nimran Hussain — built with intention, not templates.
+                    <div class="flex flex-wrap gap-1.5 font-mono text-xs">
+                        <span class="px-2 py-0.5 rounded bg-slate-900/80 text-cyber-accent border border-cyber-accent/20">Python</span>
+                        <span class="px-2 py-0.5 rounded bg-slate-900/80 text-cyber-accent border border-cyber-accent/20">OpenAI</span>
+                        <span class="px-2 py-0.5 rounded bg-slate-900/80 text-cyber-accent border border-cyber-accent/20">Gradio</span>
+                        <span class="px-2 py-0.5 rounded bg-slate-900/80 text-cyber-accent border border-cyber-accent/20">Railway</span>
+                        <span class="px-2 py-0.5 rounded bg-slate-900/80 text-cyber-alt border border-cyber-alt/20">Tool Calling</span>
+                    </div>
+
+                    <p class="text-sm text-cyber-text leading-relaxed">
+                        A deployed AI agent representing a person's career portfolio on the web. Built with an agentic tool-calling loop — handles live visitor conversations, records contact details via tool calls, and logs unanswered questions for follow-up.
+                    </p>
+
+                    <div class="pt-2">
+                        <a href="https://github.com/nimranhussi-afk/my-digital-twin-agent" target="_blank" rel="noopener noreferrer" 
+                           class="inline-flex items-center gap-2 text-xs font-mono text-cyber-accent hover:text-cyber-bright hover:underline transition-all">
+                            <i class="fa-brands fa-github"></i> [ Source Code ]
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Project 3: CrewAI Blog Factory -->
+                <div class="project-card glass-panel rounded-xl p-6 border-glow-hover space-y-4" data-category="agent">
+                    <div class="flex flex-wrap items-center justify-between gap-2">
+                        <h3 class="text-lg font-bold text-cyber-bright flex items-center gap-2 font-mono">
+                            <span>🚀 CrewAI Multi-Agent Asynchronous Content Factory</span>
+                        </h3>
+                    </div>
+
+                    <div class="flex flex-wrap gap-1.5 font-mono text-xs">
+                        <span class="px-2 py-0.5 rounded bg-slate-900/80 text-cyber-accent border border-cyber-accent/20">Python</span>
+                        <span class="px-2 py-0.5 rounded bg-slate-900/80 text-cyber-accent border border-cyber-accent/20">CrewAI</span>
+                        <span class="px-2 py-0.5 rounded bg-slate-900/80 text-cyber-accent border border-cyber-accent/20">Gemini 2.5</span>
+                        <span class="px-2 py-0.5 rounded bg-slate-900/80 text-cyber-accent border border-cyber-accent/20">asyncio</span>
+                        <span class="px-2 py-0.5 rounded bg-slate-900/80 text-cyber-alt border border-cyber-alt/20">Multi-Agent</span>
+                    </div>
+
+                    <p class="text-sm text-cyber-text leading-relaxed">
+                        An asynchronous multi-agent pipeline built to replace simple single-prompt bottlenecks with an aligned execution matrix. Coordinates specialized virtual worker personas (Content Planner, Writer, and Editor) backed by Gemini 2.5, using strict token containment criteria and runtime asyncio event loops.
+                    </p>
+
+                    <div class="pt-2">
+                        <a href="https://github.com/nimranhussi-afk/CrewAI-Blog-Factory" target="_blank" rel="noopener noreferrer" 
+                           class="inline-flex items-center gap-2 text-xs font-mono text-cyber-accent hover:text-cyber-bright hover:underline transition-all">
+                            <i class="fa-brands fa-github"></i> [ Source Code ]
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Project 4: n8n Workflow Pipeline -->
+                <div class="project-card glass-panel rounded-xl p-6 border-glow-hover space-y-4" data-category="automation">
+                    <div class="flex flex-wrap items-center justify-between gap-2">
+                        <h3 class="text-lg font-bold text-cyber-bright flex items-center gap-2 font-mono">
+                            <span>⚡ AI Script Automation — n8n Workflow Pipeline</span>
+                        </h3>
+                    </div>
+
+                    <div class="flex flex-wrap gap-1.5 font-mono text-xs">
+                        <span class="px-2 py-0.5 rounded bg-slate-900/80 text-cyber-accent border border-cyber-accent/20">n8n</span>
+                        <span class="px-2 py-0.5 rounded bg-slate-900/80 text-cyber-accent border border-cyber-accent/20">Groq API</span>
+                        <span class="px-2 py-0.5 rounded bg-slate-900/80 text-cyber-accent border border-cyber-accent/20">Google Sheets API</span>
+                        <span class="px-2 py-0.5 rounded bg-slate-900/80 text-cyber-accent border border-cyber-accent/20">Unsplash API</span>
+                        <span class="px-2 py-0.5 rounded bg-slate-900/80 text-cyber-alt border border-cyber-alt/20">JavaScript</span>
+                    </div>
+
+                    <p class="text-sm text-cyber-text leading-relaxed">
+                        A full no-code automation pipeline that reads topics from Google Sheets, generates AI scripts using Groq, fetches matching images via the Unsplash API, and writes all results back to Sheets — entirely automated, zero manual steps.
+                    </p>
+
+                    <div class="pt-2">
+                        <a href="https://github.com/nimranhussi-afk/ai-script-automation" target="_blank" rel="noopener noreferrer" 
+                           class="inline-flex items-center gap-2 text-xs font-mono text-cyber-accent hover:text-cyber-bright hover:underline transition-all">
+                            <i class="fa-brands fa-github"></i> [ Source Code ]
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Project 5: LangGraph Pipeline -->
+                <div class="project-card glass-panel rounded-xl p-6 border-glow-hover space-y-4" data-category="agent">
+                    <div class="flex flex-wrap items-center justify-between gap-2">
+                        <h3 class="text-lg font-bold text-cyber-bright flex items-center gap-2 font-mono">
+                            <span>🔗 LangGraph Agentic Pipeline — Core Patterns</span>
+                        </h3>
+                    </div>
+
+                    <div class="flex flex-wrap gap-1.5 font-mono text-xs">
+                        <span class="px-2 py-0.5 rounded bg-slate-900/80 text-cyber-accent border border-cyber-accent/20">Python</span>
+                        <span class="px-2 py-0.5 rounded bg-slate-900/80 text-cyber-accent border border-cyber-accent/20">LangGraph</span>
+                        <span class="px-2 py-0.5 rounded bg-slate-900/80 text-cyber-accent border border-cyber-accent/20">Ollama</span>
+                        <span class="px-2 py-0.5 rounded bg-slate-900/80 text-cyber-accent border border-cyber-accent/20">Tool Calling</span>
+                        <span class="px-2 py-0.5 rounded bg-slate-900/80 text-cyber-alt border border-cyber-alt/20">State Machines</span>
+                    </div>
+
+                    <p class="text-sm text-cyber-text leading-relaxed">
+                        A series of progressively complex AI agents built from scratch using LangGraph — covering stateful nodes, conditional branching, looping with counters, and real tool-calling patterns without framework abstraction.
+                    </p>
+
+                    <div class="pt-2">
+                        <a href="https://github.com/nimranhussi-afk" target="_blank" rel="noopener noreferrer" 
+                           class="inline-flex items-center gap-2 text-xs font-mono text-cyber-accent hover:text-cyber-bright hover:underline transition-all">
+                            <i class="fa-brands fa-github"></i> [ View on GitHub ]
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Project 6: Inventory System -->
+                <div class="project-card glass-panel rounded-xl p-6 border-glow-hover space-y-4" data-category="automation">
+                    <div class="flex flex-wrap items-center justify-between gap-2">
+                        <h3 class="text-lg font-bold text-cyber-bright flex items-center gap-2 font-mono">
+                            <span>📦 Inventory Management System — La CAPANNA dei Sapori</span>
+                        </h3>
+                    </div>
+
+                    <div class="flex flex-wrap gap-1.5 font-mono text-xs">
+                        <span class="px-2 py-0.5 rounded bg-slate-900/80 text-cyber-accent border border-cyber-accent/20">Python</span>
+                        <span class="px-2 py-0.5 rounded bg-slate-900/80 text-cyber-accent border border-cyber-accent/20">Backend</span>
+                        <span class="px-2 py-0.5 rounded bg-slate-900/80 text-cyber-accent border border-cyber-accent/20">Data Management</span>
+                        <span class="px-2 py-0.5 rounded bg-slate-900/80 text-cyber-alt border border-cyber-alt/20">Commercial Logistics</span>
+                    </div>
+
+                    <p class="text-sm text-cyber-text leading-relaxed">
+                        A custom commercial backend tracking system developed for a private client to streamline retail stock logistics, audit workflows, and systemic stock histories with programmatic triggers for critical low-inventory milestones.
+                    </p>
+
+                    <div class="pt-2">
+                        <a href="https://github.com/nimranhussi-afk/La-CAPANNA-dei-Sapori" target="_blank" rel="noopener noreferrer" 
+                           class="inline-flex items-center gap-2 text-xs font-mono text-cyber-accent hover:text-cyber-bright hover:underline transition-all">
+                            <i class="fa-brands fa-github"></i> [ Source Code ]
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Core Stack Section -->
+        <section class="glass-panel rounded-xl p-6 sm:p-8 space-y-6">
+            <div class="flex items-center gap-3 text-xs font-mono text-cyber-muted uppercase tracking-widest border-b border-cyber-border/40 pb-3">
+                <i class="fa-solid fa-layer-group text-cyber-accent"></i>
+                <span>// CORE_STACK</span>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div class="p-4 rounded-lg bg-cyber-bg/80 border border-cyber-border/60 hover:border-cyber-accent/40 transition-all">
+                    <div class="text-cyber-accent font-mono text-xs tracking-wider mb-2 flex items-center gap-2">
+                        <i class="fa-solid fa-robot text-xs"></i> AI_AGENTS
+                    </div>
+                    <p class="text-sm font-mono text-cyber-bright">
+                        Python, LangGraph, CrewAI, OpenAI, Gemini, Ollama
+                    </p>
+                </div>
+
+                <div class="p-4 rounded-lg bg-cyber-bg/80 border border-cyber-border/60 hover:border-cyber-accent/40 transition-all">
+                    <div class="text-cyber-accent font-mono text-xs tracking-wider mb-2 flex items-center gap-2">
+                        <i class="fa-solid fa-gears text-xs"></i> WORKFLOW_AUTOMATION
+                    </div>
+                    <p class="text-sm font-mono text-cyber-bright">
+                        n8n, Multi-step pipelines, Webhooks, API integrations
+                    </p>
+                </div>
+
+                <div class="p-4 rounded-lg bg-cyber-bg/80 border border-cyber-border/60 hover:border-cyber-accent/40 transition-all">
+                    <div class="text-cyber-accent font-mono text-xs tracking-wider mb-2 flex items-center gap-2">
+                        <i class="fa-solid fa-cloud-arrow-up text-xs"></i> DEPLOYMENT
+                    </div>
+                    <p class="text-sm font-mono text-cyber-bright">
+                        Gradio, Railway, GitHub Pages, Docker Basics
+                    </p>
+                </div>
+
+                <div class="p-4 rounded-lg bg-cyber-bg/80 border border-cyber-border/60 hover:border-cyber-accent/40 transition-all">
+                    <div class="text-cyber-accent font-mono text-xs tracking-wider mb-2 flex items-center gap-2">
+                        <i class="fa-solid fa-shield-halved text-xs"></i> LOCAL_AI
+                    </div>
+                    <p class="text-sm font-mono text-cyber-bright">
+                        Ollama — private, zero API costs local agent runner
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Education & Credentials Section -->
+        <section class="glass-panel rounded-xl p-6 sm:p-8 space-y-6">
+            <div class="flex items-center gap-3 text-xs font-mono text-cyber-muted uppercase tracking-widest border-b border-cyber-border/40 pb-3">
+                <i class="fa-solid fa-graduation-cap text-cyber-alt"></i>
+                <span>// CORE_CREDENTIALS_&_EDUCATION</span>
+            </div>
+
+            <div class="space-y-3 font-mono text-xs sm:text-sm">
+                <!-- Virtual University BSCS -->
+                <div class="flex flex-col sm:flex-row sm:items-center justify-between p-3 rounded bg-cyber-bg/60 border border-cyber-border/40 gap-1">
+                    <span class="text-cyber-accent font-semibold min-w-[220px]">DEGREE</span>
+                    <span class="text-cyber-bright">Virtual University of Pakistan — BS Computer Science (BSCS)</span>
+                </div>
+
+                <!-- Harvard CS50 -->
+                <div class="flex flex-col sm:flex-row sm:items-center justify-between p-3 rounded bg-cyber-bg/60 border border-cyber-border/40 gap-1">
+                    <span class="text-cyber-accent font-semibold min-w-[220px]">COMPUTER_SCIENCE</span>
+                    <span class="text-cyber-bright">Harvard CS50 — Introduction to Computer Science</span>
+                </div>
+
+                <!-- IBM Python & AI -->
+                <div class="flex flex-col sm:flex-row sm:items-center justify-between p-3 rounded bg-cyber-bg/60 border border-cyber-border/40 gap-1">
+                    <span class="text-cyber-accent font-semibold min-w-[220px]">IBM_CERTIFICATION</span>
+                    <span class="text-cyber-bright">IBM — Python for Data Science & AI Specialization</span>
+                </div>
+
+                <!-- Google AI -->
+                <div class="flex flex-col sm:flex-row sm:items-center justify-between p-3 rounded bg-cyber-bg/60 border border-cyber-border/40 gap-1">
+                    <span class="text-cyber-accent font-semibold min-w-[220px]">GOOGLE_CERTIFICATION</span>
+                    <span class="text-cyber-bright">Google — AI Fundamentals Certified</span>
+                </div>
+
+                <!-- IELTS -->
+                <div class="flex flex-col sm:flex-row sm:items-center justify-between p-3 rounded bg-cyber-bg/60 border border-cyber-border/40 gap-1">
+                    <span class="text-cyber-accent font-semibold min-w-[220px]">LANGUAGE_PROFICIENCY</span>
+                    <span class="text-cyber-bright">Academic IELTS — English Proficiency Certified</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Connect Section -->
+        <section class="glass-panel rounded-xl p-6 sm:p-8 space-y-6">
+            <div class="flex items-center gap-3 text-xs font-mono text-cyber-muted uppercase tracking-widest border-b border-cyber-border/40 pb-3">
+                <i class="fa-solid fa-paper-plane text-cyber-accent"></i>
+                <span>// CONNECT</span>
+            </div>
+
+            <div class="flex flex-wrap items-center gap-4">
+                <a href="https://github.com/nimranhussi-afk" target="_blank" rel="noopener noreferrer" 
+                   class="px-5 py-2.5 rounded-lg bg-cyber-surface border border-cyber-border text-cyber-bright hover:border-cyber-accent hover:text-cyber-accent hover:shadow-[0_0_15px_rgba(0,243,255,0.2)] transition-all font-mono text-sm flex items-center gap-2">
+                    <i class="fa-brands fa-github text-base"></i> GitHub
+                </a>
+
+                <a href="https://www.linkedin.com/in/syed-nimran-hussain-215a13235/" target="_blank" rel="noopener noreferrer" 
+                   class="px-5 py-2.5 rounded-lg bg-cyber-surface border border-cyber-border text-cyber-bright hover:border-cyber-accent hover:text-cyber-accent hover:shadow-[0_0_15px_rgba(0,243,255,0.2)] transition-all font-mono text-sm flex items-center gap-2">
+                    <i class="fa-brands fa-linkedin text-base"></i> LinkedIn
+                </a>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="text-center pt-6 pb-12 text-xs font-mono text-cyber-muted border-t border-cyber-border/30">
+            <p>© 2026 Syed Nimran Hussain — Built with intention, clean architecture & autonomous precision.</p>
+        </footer>
+
     </div>
 
-</div>
+    <!-- Interactive Client Script -->
+    <script>
+        function filterProjects(category) {
+            const cards = document.querySelectorAll('.project-card');
+            const btnAll = document.getElementById('btn-all');
+            const btnAgent = document.getElementById('btn-agent');
+            const btnAutomation = document.getElementById('btn-automation');
+
+            // Reset Button Styles
+            [btnAll, btnAgent, btnAutomation].forEach(btn => {
+                btn.className = "px-3 py-1 rounded-md bg-cyber-surface text-cyber-muted border border-cyber-border hover:text-cyber-bright transition-all";
+            });
+
+            // Highlight Active Button
+            if (category === 'all') {
+                btnAll.className = "px-3 py-1 rounded-md bg-cyber-accent/20 text-cyber-accent border border-cyber-accent/40 hover:bg-cyber-accent/30 transition-all";
+            } else if (category === 'agent') {
+                btnAgent.className = "px-3 py-1 rounded-md bg-cyber-accent/20 text-cyber-accent border border-cyber-accent/40 hover:bg-cyber-accent/30 transition-all";
+            } else if (category === 'automation') {
+                btnAutomation.className = "px-3 py-1 rounded-md bg-cyber-accent/20 text-cyber-accent border border-cyber-accent/40 hover:bg-cyber-accent/30 transition-all";
+            }
+
+            // Filter Projects Animation
+            cards.forEach(card => {
+                if (category === 'all' || card.getAttribute('data-category') === category) {
+                    card.style.display = 'block';
+                    card.style.opacity = '1';
+                } else {
+                    card.style.display = 'none';
+                    card.style.opacity = '0';
+                }
+            });
+        }
+    </script>
 </body>
 </html>
